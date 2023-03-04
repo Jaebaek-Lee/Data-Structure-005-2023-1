@@ -1,7 +1,8 @@
 ## 실습시간엔 무난하게 2솔
 # 여기 올리는 건 다른 분반 문제들 
 
-'''
+# 기능을 가진 배열 클래스
+``` 
 #include <iostream>
 
 using namespace std;
@@ -108,9 +109,9 @@ int main() {
 	}
 	return 0;
 }
-'''
-
-'''
+```
+# 환형 좌측 시프트 연산
+``` c++
 #include <iostream>
 
 using namespace std;
@@ -175,4 +176,4 @@ int main() {
 	}
 	return 0;
 }
-'''
+```
