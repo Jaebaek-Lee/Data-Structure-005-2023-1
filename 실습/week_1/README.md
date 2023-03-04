@@ -2,7 +2,7 @@
   여기 올리는 건 다른 분반 문제들 
 
 ### 기능을 가진 배열 클래스
-``` 
+``` c++
 #include <iostream>
 
 using namespace std;
