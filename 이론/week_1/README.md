@@ -1,4 +1,4 @@
-# Singly Linked List 연습
+# Singly Linked List
 
 ``` c++
 #include <iostream>
