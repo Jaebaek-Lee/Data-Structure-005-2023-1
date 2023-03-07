@@ -35,7 +35,7 @@ public:
 		if (empty()) {
 			tail = newNode;
 		}
-		newNode->next = head; //비었으면 nullptr 참조할 
+		newNode->next = head; //비었으면 nullptr 참조할 것
 		newNode->str = data;
 		head = newNode;
 	}
