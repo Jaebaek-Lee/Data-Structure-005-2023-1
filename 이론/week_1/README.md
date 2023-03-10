@@ -99,7 +99,7 @@ public:
 			delete temp;
 		}
 		delete head;
-		delete tail;
+		//delete tail; nullptr을 delete하는 것은 가능하다. 하지만 똑같은 메모리를 두 번 이상 delete 하는 것은 런타임 에러를 발생시킴.
 	}
 };
 
