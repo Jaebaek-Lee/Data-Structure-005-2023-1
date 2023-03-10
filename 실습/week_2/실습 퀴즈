@@ -1,0 +1,147 @@
+### 1번 맞추고 2번은 시간 내에 못 풀었다.
+## Singly Linked List
+ 실습시간에 짠 코드가 더 효율적이었던 것 같음. 기억이 안난다...
+``` c++
+#include <iostream>
+
+using namespace std;
+
+class Node {
+private:
+	int data = 0;
+	Node* next = nullptr;
+
+	friend class SinglyLinkedList;
+};
+
+class SinglyLinkedList {
+private:
+	Node* head;
+	Node* tail;
+	int listSize;
+public:
+	SinglyLinkedList() : head{nullptr}, tail{nullptr}, listSize{0} {}
+	bool empty() {
+		if (listSize == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	void addFront(int data) {
+		Node* newNode = new Node;
+		newNode->data = data;
+		if (empty()) {
+			head = tail = newNode;
+		}
+		else {
+			newNode->next = head;
+			head = newNode;
+		}
+		++listSize;
+	}
+	void removeFront() {
+		if (empty()) {
+			cout << "Empty\n";
+			return;
+		}
+		else {
+			Node* old = head;
+			head = head->next;
+			cout << old->data << '\n';
+			delete old;
+			--listSize;
+			if (empty()) {
+				tail = nullptr;
+			}
+		}
+	}
+	void update(int idx, int data) {
+		if (idx < 0 || idx >= listSize /*|| empty()앞 조건에서 충족*/) {
+			cout << "error\n";
+			return;
+		}
+		Node* cursor = head;
+		for (int i = 0; i < idx; ++i) {
+			cursor = cursor->next;
+		}
+		cursor->data = data;
+	}
+	void min() {
+		if (empty()) {
+			cout << "empty\n";
+			return;
+		}
+		int min = 10000;
+		int first = 0;
+		int check = 0;
+		Node* cursor = head;
+		for (int i = 0; i < listSize; ++i) {
+			if (cursor->data < min) {
+				check = 0;
+				first = i;
+				min = cursor->data;
+			}
+			else if (cursor->data == min) {
+				if (check == 0) {
+					first = i;
+				}
+				++check;
+			}
+			cursor = cursor->next;
+		}
+		cout << first << ' ' << min << '\n';
+	}
+	void print() {
+		if (empty()) {
+			cout << "empty\n";
+			return;
+		}
+		Node* cursor = head;
+		for (int i = 0; i < listSize; ++i) {
+			cout << cursor->data << ' ';
+			cursor = cursor->next;
+		}
+		cout << '\n';
+	}
+	~SinglyLinkedList() {
+		Node* cursor;
+		for (int i = 0; i < listSize; ++i) {
+			cursor = head;
+			head = head->next;
+			delete cursor;
+		}
+		delete head;
+		//delete tail; 이녀석은 이미 delete 된 상태. 또 하면 런타임 에러...
+	}
+};
+
+int main() {
+	int num = 0, idx = 0, data = 0;
+	cin >> num;
+	string str;
+	SinglyLinkedList list;
+	while (num--) {
+		cin >> str;
+		if (str == "Print") {
+			list.print();
+		}
+		else if (str == "AddFront") {
+			cin >> data;
+			list.addFront(data);
+		}
+		else if (str == "Update") {
+			cin >> idx >> data;
+			list.update(idx, data);
+		}
+		else if (str == "RemoveFront") {
+			list.removeFront();
+		}
+		else if (str == "Min") {
+			list.min();
+		}
+	}
+	return 0;
+}
+```
